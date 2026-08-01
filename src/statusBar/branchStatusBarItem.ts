@@ -4,7 +4,7 @@ import { getCurrentBranchName } from '../git/builtinApi';
 
 export function createBranchStatusBarItem(repoManager: RepoManager): vscode.StatusBarItem {
   const item = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 100);
-  item.command = 'gitpeak.showBranchesPopup';
+  item.command = 'gitvantage.showBranchesPopup';
 
   const update = () => {
     const repo = repoManager.getActiveRepository();
@@ -16,7 +16,7 @@ export function createBranchStatusBarItem(repoManager: RepoManager): vscode.Stat
     const branchText = `$(git-branch) ${branch ?? 'detached HEAD'}`;
     const multiRepo = repoManager.getRepositorySummaries().length > 1;
     item.text = multiRepo ? `$(repo) ${toRepoSummary(repo).name}  ${branchText}` : branchText;
-    item.tooltip = 'GitPeak: Branches…';
+    item.tooltip = 'GitVantage: Branches…';
     item.show();
   };
 

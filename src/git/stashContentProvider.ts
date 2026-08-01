@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import { execGit } from '../util/exec';
 
-export const STASH_SCHEME = 'gitpeak-stash';
+export const STASH_SCHEME = 'gitvantage-stash';
 
 export function stashFileUri(repoRoot: string, ref: string, relativePath: string): vscode.Uri {
   return vscode.Uri.from({

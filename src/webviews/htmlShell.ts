@@ -22,7 +22,7 @@ export function getWebviewHtml(webview: vscode.Webview, extensionUri: vscode.Uri
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src ${webview.cspSource} 'unsafe-inline'; img-src ${webview.cspSource}; font-src ${webview.cspSource}; script-src 'nonce-${csp}';" />
   <link rel="stylesheet" href="${codiconUri}" />
   <link rel="stylesheet" href="${styleUri}" />
-  <title>GitPeak</title>
+  <title>GitVantage</title>
 </head>
 <body>
   <div id="root"></div>

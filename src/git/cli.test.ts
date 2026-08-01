@@ -488,7 +488,7 @@ describe('getBlame', () => {
     expect(blame).toHaveLength(2);
     expect(blame[0].summary).toBe('add line1');
     expect(blame[1].summary).toBe('add line2');
-    expect(blame[0].author).toBe('GitPeak Test');
+    expect(blame[0].author).toBe('GitVantage Test');
   });
 
   it('marks uncommitted lines distinctly', async () => {

@@ -83,7 +83,7 @@ export class CommitViewProvider implements vscode.WebviewViewProvider {
       untracked,
       merging,
       amendAvailable: true,
-      subjectLineLimit: vscode.workspace.getConfiguration('gitpeak').get<number>('commit.subjectLineLimit', 72),
+      subjectLineLimit: vscode.workspace.getConfiguration('gitvantage').get<number>('commit.subjectLineLimit', 72),
     };
     this.post({ type: 'state', payload: state });
   }
@@ -106,7 +106,7 @@ export class CommitViewProvider implements vscode.WebviewViewProvider {
       } catch (err) {
         logError(`handling ${msg.type}`, err);
         const message = err instanceof Error ? err.message : String(err);
-        vscode.window.showErrorMessage(`GitPeak: ${message}`);
+        vscode.window.showErrorMessage(`GitVantage: ${message}`);
       }
       return;
     }
@@ -181,7 +181,7 @@ export class CommitViewProvider implements vscode.WebviewViewProvider {
     } catch (err) {
       logError(`handling webview message ${msg.type}`, err);
       const message = err instanceof Error ? err.message : String(err);
-      vscode.window.showErrorMessage(`GitPeak: ${message}`);
+      vscode.window.showErrorMessage(`GitVantage: ${message}`);
       const requestId = 'requestId' in msg ? msg.requestId : undefined;
       this.post({ type: 'error', payload: { message }, requestId });
     }

@@ -5,8 +5,8 @@ import { toRepoSummary, type RepoManager } from '../git/repoManager';
 // entirely otherwise, so single-repo workspaces see no new status bar noise.
 export function createRepoStatusBarItem(repoManager: RepoManager): vscode.StatusBarItem {
   const item = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 101);
-  item.command = 'gitpeak.switchRepository';
-  item.tooltip = 'GitPeak: Switch Repository';
+  item.command = 'gitvantage.switchRepository';
+  item.tooltip = 'GitVantage: Switch Repository';
 
   const update = () => {
     const summaries = repoManager.getRepositorySummaries();

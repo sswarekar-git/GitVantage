@@ -3,7 +3,7 @@ import * as vscode from 'vscode';
 let channel: vscode.OutputChannel | undefined;
 
 export function initLogger(): vscode.OutputChannel {
-  channel = vscode.window.createOutputChannel('GitPeak');
+  channel = vscode.window.createOutputChannel('GitVantage');
   return channel;
 }
 

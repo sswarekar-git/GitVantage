@@ -105,7 +105,7 @@ export class StashViewProvider implements vscode.WebviewViewProvider {
     } catch (err) {
       logError(`handling stash webview message ${msg.type}`, err);
       const message = err instanceof Error ? err.message : String(err);
-      vscode.window.showErrorMessage(`GitPeak: ${message}`);
+      vscode.window.showErrorMessage(`GitVantage: ${message}`);
       const requestId = 'requestId' in msg ? msg.requestId : undefined;
       this.post({ type: 'error', payload: { message }, requestId });
     }

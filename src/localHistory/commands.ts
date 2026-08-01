@@ -9,20 +9,20 @@ interface HistoryItem extends vscode.QuickPickItem {
 
 export function registerLocalHistoryCommand(context: vscode.ExtensionContext, store: LocalHistoryStore): void {
   context.subscriptions.push(
-    vscode.commands.registerCommand('gitpeak.localHistory.show', () => showHistory(store)),
+    vscode.commands.registerCommand('gitvantage.localHistory.show', () => showHistory(store)),
   );
 }
 
 async function showHistory(store: LocalHistoryStore): Promise<void> {
   const editor = vscode.window.activeTextEditor;
   if (!editor) {
-    vscode.window.showInformationMessage('GitPeak: open a file to view its local history.');
+    vscode.window.showInformationMessage('GitVantage: open a file to view its local history.');
     return;
   }
   const uri = editor.document.uri;
   const snapshots = await store.listSnapshots(uri);
   if (snapshots.length === 0) {
-    vscode.window.showInformationMessage('GitPeak: no local history recorded for this file yet.');
+    vscode.window.showInformationMessage('GitVantage: no local history recorded for this file yet.');
     return;
   }
 

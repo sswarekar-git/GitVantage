@@ -56,7 +56,7 @@ export class BlameController implements vscode.Disposable {
   private async decorate(editor: vscode.TextEditor): Promise<void> {
     const doc = editor.document;
     if (doc.uri.scheme !== 'file') return;
-    // Blame the file's own repo, independent of whichever repo GitPeak's
+    // Blame the file's own repo, independent of whichever repo GitVantage's
     // panels currently show — otherwise blaming a file in repo B while the
     // panels are scoped to repo A computes a bogus relative path.
     const repo = this.repoManager.getRepositoryForFile(doc.uri) ?? this.repoManager.getActiveRepository();

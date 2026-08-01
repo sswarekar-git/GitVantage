@@ -16,13 +16,13 @@ export interface TempRepo {
 // we call execFile with the args we think we call it with, not that those
 // args do what we believe).
 export function createTempRepo(): TempRepo {
-  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'gitpeak-test-'));
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'gitvantage-test-'));
 
   const git = (...args: string[]): string => execFileSync('git', args, { cwd: root, encoding: 'utf8' });
 
   git('init', '-q', '-b', 'main');
   git('config', 'user.email', 'test@example.com');
-  git('config', 'user.name', 'GitPeak Test');
+  git('config', 'user.name', 'GitVantage Test');
 
   const write = (relativePath: string, content: string): void => {
     const full = path.join(root, relativePath);
@@ -41,7 +41,7 @@ export function createTempRepo(): TempRepo {
 // be "checked out" isn't ambiguous/refused the way it is for a normal repo —
 // use this as the `origin` in tests that need to push/fetch.
 export function createBareRepo(): TempRepo {
-  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'gitpeak-test-bare-'));
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'gitvantage-test-bare-'));
   const git = (...args: string[]): string => execFileSync('git', args, { cwd: root, encoding: 'utf8' });
   git('init', '-q', '--bare', '-b', 'main');
 

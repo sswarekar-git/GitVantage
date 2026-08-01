@@ -25,7 +25,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
     await repoManager.activate();
   } catch (err) {
     logError('activating repo manager', err);
-    vscode.window.showErrorMessage('GitPeak: failed to connect to the built-in Git extension.');
+    vscode.window.showErrorMessage('GitVantage: failed to connect to the built-in Git extension.');
     return;
   }
 
@@ -33,9 +33,9 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
   const stashViewProvider = new StashViewProvider(context.extensionUri, repoManager);
   const logViewProvider = new LogViewProvider(context.extensionUri, repoManager);
   context.subscriptions.push(
-    vscode.window.registerWebviewViewProvider('gitpeak.commit', commitViewProvider),
-    vscode.window.registerWebviewViewProvider('gitpeak.stash', stashViewProvider),
-    vscode.window.registerWebviewViewProvider('gitpeak.log', logViewProvider),
+    vscode.window.registerWebviewViewProvider('gitvantage.commit', commitViewProvider),
+    vscode.window.registerWebviewViewProvider('gitvantage.stash', stashViewProvider),
+    vscode.window.registerWebviewViewProvider('gitvantage.log', logViewProvider),
     vscode.workspace.registerTextDocumentContentProvider(STASH_SCHEME, new StashContentProvider()),
   );
 
@@ -59,19 +59,19 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
   registerLocalHistoryCommand(context, localHistoryStore);
 
   context.subscriptions.push(
-    vscode.commands.registerCommand('gitpeak.refreshAll', () => {
+    vscode.commands.registerCommand('gitvantage.refreshAll', () => {
       commitViewProvider.refresh();
       stashViewProvider.refresh();
       logViewProvider.refresh();
     }),
-    vscode.commands.registerCommand('gitpeak.openLog', () => {
-      vscode.commands.executeCommand('gitpeak.log.focus');
+    vscode.commands.registerCommand('gitvantage.openLog', () => {
+      vscode.commands.executeCommand('gitvantage.log.focus');
     }),
-    vscode.commands.registerCommand('gitpeak.showBranchesPopup', () => {
+    vscode.commands.registerCommand('gitvantage.showBranchesPopup', () => {
       BranchesPanel.createOrShow(context.extensionUri, repoManager);
     }),
-    vscode.commands.registerCommand('gitpeak.toggleBlame', () => blameController.toggle()),
-    vscode.commands.registerCommand('gitpeak.switchRepository', async () => {
+    vscode.commands.registerCommand('gitvantage.toggleBlame', () => blameController.toggle()),
+    vscode.commands.registerCommand('gitvantage.switchRepository', async () => {
       const active = repoManager.getActiveRepository();
       const items = repoManager.getRepositorySummaries().map((r) => ({
         label: r.rootPath === active?.rootUri.fsPath ? `$(check) ${r.name}` : r.name,
@@ -81,52 +81,52 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
       const picked = await vscode.window.showQuickPick(items, { placeHolder: 'Select a repository' });
       if (picked) repoManager.setActiveRepository(picked.rootPath);
     }),
-    vscode.commands.registerCommand('gitpeak.fetch', async () => {
+    vscode.commands.registerCommand('gitvantage.fetch', async () => {
       const repo = repoManager.getActiveRepository();
       if (!repo) return;
       try {
         await cli.fetchAll(repo.rootUri.fsPath);
-        vscode.window.showInformationMessage('GitPeak: fetch complete');
+        vscode.window.showInformationMessage('GitVantage: fetch complete');
       } catch (err) {
         logError('fetching', err);
-        vscode.window.showErrorMessage(`GitPeak: ${err instanceof Error ? err.message : String(err)}`);
+        vscode.window.showErrorMessage(`GitVantage: ${err instanceof Error ? err.message : String(err)}`);
       } finally {
         commitViewProvider.refresh();
         logViewProvider.refresh();
       }
     }),
-    vscode.commands.registerCommand('gitpeak.pull', async () => {
+    vscode.commands.registerCommand('gitvantage.pull', async () => {
       const repo = repoManager.getActiveRepository();
       if (!repo) return;
       try {
         await cli.pull(repo.rootUri.fsPath);
-        vscode.window.showInformationMessage('GitPeak: pull complete');
+        vscode.window.showInformationMessage('GitVantage: pull complete');
       } catch (err) {
         logError('pulling', err);
-        vscode.window.showErrorMessage(`GitPeak: ${err instanceof Error ? err.message : String(err)}`);
+        vscode.window.showErrorMessage(`GitVantage: ${err instanceof Error ? err.message : String(err)}`);
       } finally {
         commitViewProvider.refresh();
         logViewProvider.refresh();
       }
     }),
-    vscode.commands.registerCommand('gitpeak.push', async () => {
+    vscode.commands.registerCommand('gitvantage.push', async () => {
       const repo = repoManager.getActiveRepository();
       if (!repo) return;
       try {
         await cli.pushCurrent(repo.rootUri.fsPath);
-        vscode.window.showInformationMessage('GitPeak: push complete');
+        vscode.window.showInformationMessage('GitVantage: push complete');
       } catch (err) {
         logError('pushing', err);
-        vscode.window.showErrorMessage(`GitPeak: ${err instanceof Error ? err.message : String(err)}`);
+        vscode.window.showErrorMessage(`GitVantage: ${err instanceof Error ? err.message : String(err)}`);
       } finally {
         commitViewProvider.refresh();
         logViewProvider.refresh();
       }
     }),
-    vscode.commands.registerCommand('gitpeak.addRemote', async () => {
+    vscode.commands.registerCommand('gitvantage.addRemote', async () => {
       const repo = repoManager.getActiveRepository();
       if (!repo) {
-        vscode.window.showErrorMessage('GitPeak: no active Git repository.');
+        vscode.window.showErrorMessage('GitVantage: no active Git repository.');
         return;
       }
       const repoRoot = repo.rootUri.fsPath;
@@ -152,16 +152,16 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
 
       try {
         await cli.addRemote(repoRoot, name.trim(), url.trim());
-        vscode.window.showInformationMessage(`GitPeak: added remote "${name.trim()}"`);
+        vscode.window.showInformationMessage(`GitVantage: added remote "${name.trim()}"`);
       } catch (err) {
         logError('adding remote', err);
-        vscode.window.showErrorMessage(`GitPeak: ${err instanceof Error ? err.message : String(err)}`);
+        vscode.window.showErrorMessage(`GitVantage: ${err instanceof Error ? err.message : String(err)}`);
       } finally {
         commitViewProvider.refresh();
         logViewProvider.refresh();
       }
     }),
-    vscode.commands.registerCommand('gitpeak.pruneRemotes', async () => {
+    vscode.commands.registerCommand('gitvantage.pruneRemotes', async () => {
       const repo = repoManager.getActiveRepository();
       if (!repo) return;
       const repoRoot = repo.rootUri.fsPath;
@@ -170,17 +170,17 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
         for (const remote of remotes) {
           await cli.pruneRemote(repoRoot, remote);
         }
-        vscode.window.showInformationMessage(`GitPeak: pruned ${remotes.length} remote(s)`);
+        vscode.window.showInformationMessage(`GitVantage: pruned ${remotes.length} remote(s)`);
       } catch (err) {
         logError('pruning remotes', err);
-        vscode.window.showErrorMessage(`GitPeak: ${err instanceof Error ? err.message : String(err)}`);
+        vscode.window.showErrorMessage(`GitVantage: ${err instanceof Error ? err.message : String(err)}`);
       } finally {
         logViewProvider.refresh();
       }
     }),
   );
 
-  log('GitPeak activated');
+  log('GitVantage activated');
 }
 
 export function deactivate(): void {

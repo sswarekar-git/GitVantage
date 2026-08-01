@@ -17,7 +17,7 @@ export async function openCompareDiffs(
 ): Promise<void> {
   const files = await cli.diffNameStatus(repoRoot, from, to);
   if (files.length === 0) {
-    vscode.window.showInformationMessage('GitPeak: no differences');
+    vscode.window.showInformationMessage('GitVantage: no differences');
     return;
   }
   for (const file of files.slice(0, 25)) {

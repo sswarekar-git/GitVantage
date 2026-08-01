@@ -1,6 +1,6 @@
 // Minimal hand-written subset of the built-in vscode.git extension's public API.
 // vscode.git ships no public .d.ts in @types, so this trims the well-known
-// microsoft/vscode extensions/git/src/api/git.d.ts sample down to what GitPeak uses.
+// microsoft/vscode extensions/git/src/api/git.d.ts sample down to what GitVantage uses.
 import * as vscode from 'vscode';
 
 export const enum Status {

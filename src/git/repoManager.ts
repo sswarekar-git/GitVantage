@@ -60,7 +60,7 @@ export class RepoManager implements vscode.Disposable {
     this.disposables.push(vscode.window.onDidChangeActiveTextEditor((editor) => this.onActiveEditorChanged(editor)));
     this.onActiveEditorChanged(vscode.window.activeTextEditor);
 
-    log(`GitPeak: tracking ${this.api.repositories.length} repositor${this.api.repositories.length === 1 ? 'y' : 'ies'}`);
+    log(`GitVantage: tracking ${this.api.repositories.length} repositor${this.api.repositories.length === 1 ? 'y' : 'ies'}`);
   }
 
   private watchRepo(repo: Repository): void {
@@ -69,7 +69,7 @@ export class RepoManager implements vscode.Disposable {
   }
 
   // Auto-follow: switching the active editor to a file in a different repo's
-  // folder re-syncs which repo GitPeak's panels operate on. A file that
+  // folder re-syncs which repo GitVantage's panels operate on. A file that
   // doesn't resolve to any known repo (untracked, output/settings editors,
   // etc.) leaves the current selection untouched.
   private onActiveEditorChanged(editor: vscode.TextEditor | undefined): void {

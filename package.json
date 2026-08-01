@@ -1,18 +1,18 @@
 {
-  "name": "gitpeak",
-  "displayName": "GitPeak",
+  "name": "gitvantage",
+  "displayName": "GitVantage",
   "description": "Fast, keyboard-friendly Git tooling for VS Code",
   "version": "0.0.1",
   "private": true,
   "license": "GPL-3.0-or-later",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sswarekar-git/GitPeak.git"
+    "url": "https://github.com/sswarekar-git/GitVantage.git"
   },
   "bugs": {
-    "url": "https://github.com/sswarekar-git/GitPeak/issues"
+    "url": "https://github.com/sswarekar-git/GitVantage/issues"
   },
-  "homepage": "https://github.com/sswarekar-git/GitPeak#readme",
+  "homepage": "https://github.com/sswarekar-git/GitVantage#readme",
   "engines": {
     "vscode": "^1.90.0"
   },
@@ -30,35 +30,35 @@
     "viewsContainers": {
       "activitybar": [
         {
-          "id": "gitpeak",
-          "title": "GitPeak",
-          "icon": "media/icons/gitpeak-activitybar.svg"
+          "id": "gitvantage",
+          "title": "GitVantage",
+          "icon": "media/icons/gitvantage-activitybar.svg"
         }
       ],
       "panel": [
         {
-          "id": "gitpeakLogPanel",
+          "id": "gitvantageLogPanel",
           "title": "Git Log",
-          "icon": "media/icons/gitpeak-activitybar.svg"
+          "icon": "media/icons/gitvantage-activitybar.svg"
         }
       ]
     },
     "views": {
-      "gitpeak": [
+      "gitvantage": [
         {
-          "id": "gitpeak.commit",
+          "id": "gitvantage.commit",
           "name": "Commit",
           "type": "webview"
         },
         {
-          "id": "gitpeak.stash",
+          "id": "gitvantage.stash",
           "name": "Stash",
           "type": "webview"
         }
       ],
-      "gitpeakLogPanel": [
+      "gitvantageLogPanel": [
         {
-          "id": "gitpeak.log",
+          "id": "gitvantage.log",
           "name": "Log",
           "type": "webview"
         }
@@ -66,124 +66,124 @@
     },
     "commands": [
       {
-        "command": "gitpeak.refreshAll",
-        "title": "GitPeak: Refresh",
+        "command": "gitvantage.refreshAll",
+        "title": "GitVantage: Refresh",
         "icon": "$(refresh)"
       },
       {
-        "command": "gitpeak.openLog",
-        "title": "GitPeak: Open Git Log",
+        "command": "gitvantage.openLog",
+        "title": "GitVantage: Open Git Log",
         "icon": "$(git-commit)"
       },
       {
-        "command": "gitpeak.showBranchesPopup",
-        "title": "GitPeak: Branches..."
+        "command": "gitvantage.showBranchesPopup",
+        "title": "GitVantage: Branches..."
       },
       {
-        "command": "gitpeak.fetch",
-        "title": "GitPeak: Fetch",
+        "command": "gitvantage.fetch",
+        "title": "GitVantage: Fetch",
         "icon": "$(cloud-download)"
       },
       {
-        "command": "gitpeak.pull",
-        "title": "GitPeak: Pull",
+        "command": "gitvantage.pull",
+        "title": "GitVantage: Pull",
         "icon": "$(arrow-down)"
       },
       {
-        "command": "gitpeak.push",
-        "title": "GitPeak: Push",
+        "command": "gitvantage.push",
+        "title": "GitVantage: Push",
         "icon": "$(arrow-up)"
       },
       {
-        "command": "gitpeak.pruneRemotes",
-        "title": "GitPeak: Prune Remote-Tracking Branches"
+        "command": "gitvantage.pruneRemotes",
+        "title": "GitVantage: Prune Remote-Tracking Branches"
       },
       {
-        "command": "gitpeak.addRemote",
-        "title": "GitPeak: Add Remote..."
+        "command": "gitvantage.addRemote",
+        "title": "GitVantage: Add Remote..."
       },
       {
-        "command": "gitpeak.switchRepository",
-        "title": "GitPeak: Switch Repository"
+        "command": "gitvantage.switchRepository",
+        "title": "GitVantage: Switch Repository"
       },
       {
-        "command": "gitpeak.toggleBlame",
-        "title": "GitPeak: Toggle Blame Annotations"
+        "command": "gitvantage.toggleBlame",
+        "title": "GitVantage: Toggle Blame Annotations"
       },
       {
-        "command": "gitpeak.localHistory.show",
-        "title": "GitPeak: Show Local History"
+        "command": "gitvantage.localHistory.show",
+        "title": "GitVantage: Show Local History"
       }
     ],
     "menus": {
       "view/title": [
         {
-          "command": "gitpeak.pull",
-          "when": "view == gitpeak.commit",
+          "command": "gitvantage.pull",
+          "when": "view == gitvantage.commit",
           "group": "navigation@1"
         },
         {
-          "command": "gitpeak.push",
-          "when": "view == gitpeak.commit",
+          "command": "gitvantage.push",
+          "when": "view == gitvantage.commit",
           "group": "navigation@2"
         },
         {
-          "command": "gitpeak.fetch",
-          "when": "view == gitpeak.commit",
+          "command": "gitvantage.fetch",
+          "when": "view == gitvantage.commit",
           "group": "navigation@3"
         },
         {
-          "command": "gitpeak.refreshAll",
-          "when": "view == gitpeak.commit",
+          "command": "gitvantage.refreshAll",
+          "when": "view == gitvantage.commit",
           "group": "navigation@4"
         },
         {
-          "command": "gitpeak.addRemote",
-          "when": "view == gitpeak.commit",
+          "command": "gitvantage.addRemote",
+          "when": "view == gitvantage.commit",
           "group": "1_modification"
         },
         {
-          "command": "gitpeak.pull",
-          "when": "view == gitpeak.log",
+          "command": "gitvantage.pull",
+          "when": "view == gitvantage.log",
           "group": "navigation@1"
         },
         {
-          "command": "gitpeak.push",
-          "when": "view == gitpeak.log",
+          "command": "gitvantage.push",
+          "when": "view == gitvantage.log",
           "group": "navigation@2"
         },
         {
-          "command": "gitpeak.fetch",
-          "when": "view == gitpeak.log",
+          "command": "gitvantage.fetch",
+          "when": "view == gitvantage.log",
           "group": "navigation@3"
         },
         {
-          "command": "gitpeak.refreshAll",
-          "when": "view == gitpeak.log",
+          "command": "gitvantage.refreshAll",
+          "when": "view == gitvantage.log",
           "group": "navigation@4"
         }
       ],
       "editor/context": [
         {
-          "command": "gitpeak.toggleBlame",
+          "command": "gitvantage.toggleBlame",
           "when": "editorTextFocus",
-          "group": "gitpeak@1"
+          "group": "gitvantage@1"
         },
         {
-          "command": "gitpeak.localHistory.show",
+          "command": "gitvantage.localHistory.show",
           "when": "editorTextFocus",
-          "group": "gitpeak@2"
+          "group": "gitvantage@2"
         }
       ]
     },
     "configuration": {
-      "title": "GitPeak",
+      "title": "GitVantage",
       "properties": {
-        "gitpeak.log.pageSize": {
+        "gitvantage.log.pageSize": {
           "type": "number",
           "default": 200
         },
-        "gitpeak.commit.subjectLineLimit": {
+        "gitvantage.commit.subjectLineLimit": {
           "type": "number",
           "default": 72
         }

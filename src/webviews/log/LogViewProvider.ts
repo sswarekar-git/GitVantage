@@ -64,7 +64,7 @@ export class LogViewProvider implements vscode.WebviewViewProvider {
       this.post({ type: 'noRepository' });
       return;
     }
-    const pageSize = vscode.workspace.getConfiguration('gitpeak').get<number>('log.pageSize', 200);
+    const pageSize = vscode.workspace.getConfiguration('gitvantage').get<number>('log.pageSize', 200);
     this.post({ type: 'init', payload: { headSha: repo.state.HEAD?.commit, pageSize } });
   }
 
@@ -146,7 +146,7 @@ export class LogViewProvider implements vscode.WebviewViewProvider {
           break;
         case 'pruneRemote':
           await cli.pruneRemote(repoRoot, msg.payload.remote);
-          vscode.window.showInformationMessage(`GitPeak: pruned stale branches for "${msg.payload.remote}"`);
+          vscode.window.showInformationMessage(`GitVantage: pruned stale branches for "${msg.payload.remote}"`);
           await this.pushBranches();
           break;
         case 'switchRepository':
@@ -158,7 +158,7 @@ export class LogViewProvider implements vscode.WebviewViewProvider {
     } catch (err) {
       logError(`handling log webview message ${msg.type}`, err);
       const message = err instanceof Error ? err.message : String(err);
-      vscode.window.showErrorMessage(`GitPeak: ${message}`);
+      vscode.window.showErrorMessage(`GitVantage: ${message}`);
       const requestId = 'requestId' in msg ? msg.requestId : undefined;
       this.post({ type: 'error', payload: { message }, requestId });
     }
@@ -168,7 +168,7 @@ export class LogViewProvider implements vscode.WebviewViewProvider {
     switch (action) {
       case 'checkout':
         await cli.checkoutBranch(repoRoot, sha);
-        vscode.window.showInformationMessage(`GitPeak: checked out ${sha.slice(0, 8)} (detached HEAD)`);
+        vscode.window.showInformationMessage(`GitVantage: checked out ${sha.slice(0, 8)} (detached HEAD)`);
         break;
       case 'cherryPick': {
         if (await cli.cherryPickInProgress(repoRoot)) {
@@ -181,18 +181,18 @@ export class LogViewProvider implements vscode.WebviewViewProvider {
           await cli.abortCherryPick(repoRoot);
         }
         await cli.cherryPick(repoRoot, sha);
-        vscode.window.showInformationMessage(`GitPeak: cherry-picked ${sha.slice(0, 8)}`);
+        vscode.window.showInformationMessage(`GitVantage: cherry-picked ${sha.slice(0, 8)}`);
         break;
       }
       case 'revert':
         await cli.revertCommit(repoRoot, sha);
-        vscode.window.showInformationMessage(`GitPeak: reverted ${sha.slice(0, 8)}`);
+        vscode.window.showInformationMessage(`GitVantage: reverted ${sha.slice(0, 8)}`);
         break;
       case 'createBranch': {
         const name = await vscode.window.showInputBox({ prompt: `New branch name from ${sha.slice(0, 8)}` });
         if (!name) return;
         await cli.createBranch(repoRoot, name, sha);
-        vscode.window.showInformationMessage(`GitPeak: created branch ${name}`);
+        vscode.window.showInformationMessage(`GitVantage: created branch ${name}`);
         break;
       }
       case 'resetSoft': {

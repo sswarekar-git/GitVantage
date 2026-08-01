@@ -243,7 +243,7 @@ export function App() {
                 />
               ))}
               {loading && <div class="log-loading">Loading…</div>}
-              {!loading && loadError && <div class="log-error">GitPeak: {loadError}</div>}
+              {!loading && loadError && <div class="log-error">GitVantage: {loadError}</div>}
               {!loading && !loadError && noRepository && (
                 <div class="empty-state">No git repository in this workspace — open the Commit view to initialize or clone one.</div>
               )}

@@ -1,4 +1,4 @@
-// Minimal fake of the `vscode` module, scoped to exactly what GitPeak's host
+// Minimal fake of the `vscode` module, scoped to exactly what GitVantage's host
 // code touches (see the grep audit in the test-suite PR) — not a general
 // VSCode API shim. Aliased in vitest.config.ts so `import * as vscode from
 // 'vscode'` resolves to this everywhere under test.

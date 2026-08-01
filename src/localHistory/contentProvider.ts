@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import type { LocalHistoryStore } from './store';
 
-export const LOCAL_HISTORY_SCHEME = 'gitpeak-localhistory';
+export const LOCAL_HISTORY_SCHEME = 'gitvantage-localhistory';
 
 export function localHistoryUri(fileUri: vscode.Uri, snapshotId: string): vscode.Uri {
   return vscode.Uri.from({

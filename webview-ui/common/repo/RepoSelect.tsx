@@ -7,7 +7,7 @@ interface RepoSelectProps {
 }
 
 // Renders nothing at all in the common single-repo case — only shows up once
-// a workspace actually has more than one repo for GitPeak to switch between.
+// a workspace actually has more than one repo for GitVantage to switch between.
 export function RepoSelect({ repos, activeRepoRoot, onChange }: RepoSelectProps) {
   if (repos.length <= 1) return null;
   return (

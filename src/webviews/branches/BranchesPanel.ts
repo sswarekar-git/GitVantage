@@ -20,7 +20,7 @@ export class BranchesPanel {
       return;
     }
     const panel = vscode.window.createWebviewPanel(
-      'gitpeakBranches',
+      'gitvantageBranches',
       'Branches',
       { viewColumn: vscode.ViewColumn.Active, preserveFocus: false },
       { enableScripts: true, localResourceRoots: [extensionUri] },
@@ -111,7 +111,7 @@ export class BranchesPanel {
     } catch (err) {
       logError(`handling branches webview message ${msg.type}`, err);
       const message = err instanceof Error ? err.message : String(err);
-      vscode.window.showErrorMessage(`GitPeak: ${message}`);
+      vscode.window.showErrorMessage(`GitVantage: ${message}`);
       this.post({ type: 'error', payload: { message } });
     }
   }

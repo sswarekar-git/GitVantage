@@ -1,4 +1,4 @@
-# Contributing to GitPeak
+# Contributing to GitVantage
 
 Thanks for your interest in contributing!
 

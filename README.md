@@ -1,8 +1,25 @@
 # GitPeak
 
+[![CI](https://github.com/sswarekar-git/GitPeak/actions/workflows/ci.yml/badge.svg)](https://github.com/sswarekar-git/GitPeak/actions/workflows/ci.yml)
+[![Latest release](https://img.shields.io/github/v/release/sswarekar-git/GitPeak)](https://github.com/sswarekar-git/GitPeak/releases/latest)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
+
 Fast, keyboard-friendly Git tooling for VS Code.
 
 GitPeak adds a dedicated Git panel and log viewer on top of VS Code's built-in Git support, focused on speed and keeping your hands on the keyboard.
+
+## Installation
+
+GitPeak isn't on the VS Code Marketplace yet. Install it from a [GitHub Release](https://github.com/sswarekar-git/GitPeak/releases/latest):
+
+1. Download the `.vsix` from the latest release
+2. In VS Code, open the Command Palette → **Extensions: Install from VSIX...** → select the downloaded file
+
+or from the command line:
+
+```bash
+code --install-extension gitpeak-<version>.vsix
+```
 
 ## Features
 

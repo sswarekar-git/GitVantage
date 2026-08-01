@@ -31,7 +31,7 @@ export function createTempRepo(): TempRepo {
   };
 
   const cleanup = (): void => {
-    fs.rmSync(root, { recursive: true, force: true });
+    fs.rmSync(root, { recursive: true, force: true, maxRetries: 5, retryDelay: 50 });
   };
 
   return { root, git, write, cleanup };
@@ -51,6 +51,6 @@ export function createBareRepo(): TempRepo {
     write: () => {
       throw new Error('cannot write files into a bare repo');
     },
-    cleanup: () => fs.rmSync(root, { recursive: true, force: true }),
+    cleanup: () => fs.rmSync(root, { recursive: true, force: true, maxRetries: 5, retryDelay: 50 }),
   };
 }

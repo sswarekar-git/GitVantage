@@ -1,0 +1,90 @@
+.branches-search {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px;
+  border-bottom: 1px solid var(--vscode-widget-border, transparent);
+}
+
+.branches-search-icon {
+  opacity: 0.6;
+}
+
+.branches-search input {
+  flex: 1;
+}
+
+.branches-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 4px 0;
+}
+
+.branch-group-title {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  opacity: 0.6;
+  padding: 6px 10px 2px;
+}
+
+.branch-row {
+  display: grid;
+  grid-template-columns: 16px minmax(120px, 1fr) auto minmax(80px, 2fr) 90px;
+  align-items: center;
+  gap: 8px;
+  padding: 3px 10px;
+  font-size: 13px;
+  cursor: default;
+  border-radius: 3px;
+}
+
+.branch-row:hover {
+  background: var(--vscode-list-hoverBackground);
+}
+
+.branch-row.selected {
+  background: var(--vscode-list-activeSelectionBackground);
+  color: var(--vscode-list-activeSelectionForeground);
+}
+
+.branch-row.current .branch-name {
+  font-weight: 700;
+}
+
+.branch-current-icon {
+  font-size: 13px;
+  color: var(--vscode-charts-green);
+}
+
+.branch-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fuzzy-highlight {
+  background: none;
+  color: var(--vscode-charts-orange);
+  font-weight: 700;
+}
+
+.branch-tracking {
+  display: flex;
+  gap: 4px;
+  font-size: 11px;
+  opacity: 0.8;
+}
+
+.branch-tracking .ahead { color: var(--vscode-charts-green); }
+.branch-tracking .behind { color: var(--vscode-charts-red); }
+
+.branch-subject,
+.branch-date {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  opacity: 0.6;
+  font-size: 12px;
+}

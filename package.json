@@ -1,0 +1,212 @@
+{
+  "name": "gitpeak",
+  "displayName": "GitPeak",
+  "description": "Fast, keyboard-friendly Git tooling for VS Code",
+  "version": "0.0.1",
+  "private": true,
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sswarekar-git/GitPeak.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sswarekar-git/GitPeak/issues"
+  },
+  "homepage": "https://github.com/sswarekar-git/GitPeak#readme",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "SCM Providers"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "extensionDependencies": [
+    "vscode.git"
+  ],
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "gitpeak",
+          "title": "GitPeak",
+          "icon": "media/icons/gitpeak-activitybar.svg"
+        }
+      ],
+      "panel": [
+        {
+          "id": "gitpeakLogPanel",
+          "title": "Git Log",
+          "icon": "media/icons/gitpeak-activitybar.svg"
+        }
+      ]
+    },
+    "views": {
+      "gitpeak": [
+        {
+          "id": "gitpeak.commit",
+          "name": "Commit",
+          "type": "webview"
+        },
+        {
+          "id": "gitpeak.stash",
+          "name": "Stash",
+          "type": "webview"
+        }
+      ],
+      "gitpeakLogPanel": [
+        {
+          "id": "gitpeak.log",
+          "name": "Log",
+          "type": "webview"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "gitpeak.refreshAll",
+        "title": "GitPeak: Refresh",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "gitpeak.openLog",
+        "title": "GitPeak: Open Git Log",
+        "icon": "$(git-commit)"
+      },
+      {
+        "command": "gitpeak.showBranchesPopup",
+        "title": "GitPeak: Branches..."
+      },
+      {
+        "command": "gitpeak.fetch",
+        "title": "GitPeak: Fetch",
+        "icon": "$(cloud-download)"
+      },
+      {
+        "command": "gitpeak.pull",
+        "title": "GitPeak: Pull",
+        "icon": "$(arrow-down)"
+      },
+      {
+        "command": "gitpeak.push",
+        "title": "GitPeak: Push",
+        "icon": "$(arrow-up)"
+      },
+      {
+        "command": "gitpeak.pruneRemotes",
+        "title": "GitPeak: Prune Remote-Tracking Branches"
+      },
+      {
+        "command": "gitpeak.addRemote",
+        "title": "GitPeak: Add Remote..."
+      },
+      {
+        "command": "gitpeak.switchRepository",
+        "title": "GitPeak: Switch Repository"
+      },
+      {
+        "command": "gitpeak.toggleBlame",
+        "title": "GitPeak: Toggle Blame Annotations"
+      },
+      {
+        "command": "gitpeak.localHistory.show",
+        "title": "GitPeak: Show Local History"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "gitpeak.pull",
+          "when": "view == gitpeak.commit",
+          "group": "navigation@1"
+        },
+        {
+          "command": "gitpeak.push",
+          "when": "view == gitpeak.commit",
+          "group": "navigation@2"
+        },
+        {
+          "command": "gitpeak.fetch",
+          "when": "view == gitpeak.commit",
+          "group": "navigation@3"
+        },
+        {
+          "command": "gitpeak.refreshAll",
+          "when": "view == gitpeak.commit",
+          "group": "navigation@4"
+        },
+        {
+          "command": "gitpeak.addRemote",
+          "when": "view == gitpeak.commit",
+          "group": "1_modification"
+        },
+        {
+          "command": "gitpeak.pull",
+          "when": "view == gitpeak.log",
+          "group": "navigation@1"
+        },
+        {
+          "command": "gitpeak.push",
+          "when": "view == gitpeak.log",
+          "group": "navigation@2"
+        },
+        {
+          "command": "gitpeak.fetch",
+          "when": "view == gitpeak.log",
+          "group": "navigation@3"
+        },
+        {
+          "command": "gitpeak.refreshAll",
+          "when": "view == gitpeak.log",
+          "group": "navigation@4"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "gitpeak.toggleBlame",
+          "when": "editorTextFocus",
+          "group": "gitpeak@1"
+        },
+        {
+          "command": "gitpeak.localHistory.show",
+          "when": "editorTextFocus",
+          "group": "gitpeak@2"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "GitPeak",
+      "properties": {
+        "gitpeak.log.pageSize": {
+          "type": "number",
+          "default": 200
+        },
+        "gitpeak.commit.subjectLineLimit": {
+          "type": "number",
+          "default": 72
+        }
+      }
+    }
+  },
+  "scripts": {
+    "watch": "node esbuild.js --watch",
+    "build": "node esbuild.js",
+    "vscode:prepublish": "node esbuild.js",
+    "typecheck": "tsc --noEmit -p . && tsc --noEmit -p webview-ui && tsc --noEmit -p tsconfig.test.json",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.90.0",
+    "@vscode/vsce": "^3.0.0",
+    "esbuild": "^0.23.0",
+    "typescript": "^5.5.0",
+    "vitest": "^4.1.10"
+  },
+  "dependencies": {
+    "@vscode/codicons": "^0.0.46-24",
+    "preact": "^10.22.0"
+  }
+}

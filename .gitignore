@@ -1,0 +1,5 @@
+out/
+media/dist/
+node_modules/
+*.vsix
+.DS_Store

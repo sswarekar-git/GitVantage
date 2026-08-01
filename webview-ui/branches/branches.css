@@ -1,0 +1,11 @@
+.branches-app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  box-sizing: border-box;
+  max-width: 560px;
+}
+
+.branches-app > .repo-select {
+  margin: 6px 8px 0;
+}

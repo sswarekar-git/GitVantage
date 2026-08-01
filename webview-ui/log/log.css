@@ -1,0 +1,330 @@
+.log-app {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+.log-branches-col {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  border-right: 1px solid var(--vscode-widget-border, transparent);
+  background: var(--vscode-sideBar-background);
+}
+
+/* The branches column is much narrower here than in the standalone Branches
+   popup, and the tree's leaf rows don't share the flat BranchRow's fixed
+   5-column layout (no subject/date, optional gone badge) — flex instead of
+   the popup's grid so both the tree rows and the search-mode flat rows lay
+   out correctly regardless of which/how-many badges a given row has. */
+.log-branches-col .branch-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.log-branches-col .branch-name {
+  flex: 1;
+  min-width: 0;
+}
+
+.log-branches-col .branch-subject,
+.log-branches-col .branch-date {
+  display: none;
+}
+
+.log-main {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  min-height: 0;
+  min-width: 0;
+}
+
+.log-top-row {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  min-height: 0;
+}
+
+.log-commits-col {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+}
+
+.log-files-col {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow-y: auto;
+  border-left: 1px solid var(--vscode-widget-border, transparent);
+  padding: 4px 0;
+}
+
+.log-filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--vscode-widget-border, transparent);
+}
+
+.log-filter-icon {
+  opacity: 0.6;
+}
+
+.log-filter-bar input[type='text'] {
+  flex: 1;
+}
+
+.log-branch-scope {
+  background: var(--vscode-dropdown-background);
+  color: var(--vscode-dropdown-foreground);
+  border: 1px solid var(--vscode-dropdown-border, transparent);
+  border-radius: 2px;
+  padding: 3px 4px;
+  font-size: 12px;
+}
+
+.log-header-row,
+.commit-row {
+  display: grid;
+  grid-template-columns: 90px minmax(140px, 1fr) 100px 70px;
+  align-items: center;
+  gap: 8px;
+  padding: 0 8px;
+}
+
+.log-header-row {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  opacity: 0.6;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--vscode-widget-border, transparent);
+}
+
+.log-scroll {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.commit-row {
+  height: 24px;
+  font-size: 12px;
+  border-radius: 3px;
+  cursor: default;
+}
+
+.commit-row:hover {
+  background: var(--vscode-list-hoverBackground);
+}
+
+.commit-row.is-head {
+  background: color-mix(in srgb, var(--vscode-focusBorder) 12%, transparent);
+}
+
+.commit-row.selected {
+  background: var(--vscode-list-activeSelectionBackground);
+  color: var(--vscode-list-activeSelectionForeground);
+}
+
+.commit-row-graph {
+  display: flex;
+  align-items: center;
+}
+
+.commit-row-subject {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.subject-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.subject-text.bold {
+  font-weight: 700;
+}
+
+.commit-row-author,
+.commit-row-date,
+.commit-row-sha {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  opacity: 0.75;
+}
+
+.commit-row-sha {
+  font-family: var(--vscode-editor-font-family, monospace);
+  opacity: 0.55;
+}
+
+.ref-pill {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 9px;
+  flex: none;
+  white-space: nowrap;
+}
+
+.ref-pill-head {
+  background: color-mix(in srgb, var(--vscode-charts-green) 30%, transparent);
+  color: var(--vscode-charts-green);
+}
+
+.ref-pill-local {
+  background: color-mix(in srgb, var(--vscode-charts-blue) 25%, transparent);
+  color: var(--vscode-charts-blue);
+}
+
+.ref-pill-remote {
+  background: color-mix(in srgb, var(--vscode-charts-orange) 25%, transparent);
+  color: var(--vscode-charts-orange);
+}
+
+.ref-pill-tag {
+  background: color-mix(in srgb, var(--vscode-charts-purple) 25%, transparent);
+  color: var(--vscode-charts-purple);
+}
+
+.log-loading {
+  padding: 10px;
+  font-size: 12px;
+  opacity: 0.6;
+  text-align: center;
+}
+
+.log-error {
+  padding: 10px;
+  font-size: 12px;
+  color: var(--vscode-errorForeground);
+  text-align: center;
+}
+
+.commit-details {
+  flex: none;
+  height: 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-top: 1px solid var(--vscode-widget-border, transparent);
+  background: var(--vscode-sideBar-background);
+}
+
+.commit-details-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px 2px;
+}
+
+.commit-details-subject {
+  flex: 1;
+  font-weight: 600;
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.commit-details-close {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.commit-details-close:hover {
+  opacity: 1;
+}
+
+.commit-details-meta {
+  display: flex;
+  gap: 12px;
+  padding: 4px 8px;
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+.commit-details-sha {
+  font-family: var(--vscode-editor-font-family, monospace);
+}
+
+.file-tree {
+  padding: 2px 4px;
+}
+
+.file-tree-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 6px;
+  font-size: 12px;
+  border-radius: 3px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.file-tree-row:hover {
+  background: var(--vscode-list-hoverBackground);
+}
+
+.file-tree-icon {
+  opacity: 0.8;
+}
+
+.file-tree-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.file-tree-folder-row .file-tree-name {
+  font-weight: 600;
+}
+
+.branch-tree {
+  padding: 2px 0;
+}
+
+.branch-tree-folder-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  font-size: 13px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.branch-tree-folder-row:hover {
+  background: var(--vscode-list-hoverBackground);
+}
+
+.branch-tree-folder-name {
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.branch-gone {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 9px;
+  flex: none;
+  white-space: nowrap;
+  background: color-mix(in srgb, var(--vscode-errorForeground) 20%, transparent);
+  color: var(--vscode-errorForeground);
+}

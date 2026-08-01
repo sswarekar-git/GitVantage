@@ -1,0 +1,129 @@
+.stash-app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  box-sizing: border-box;
+  padding: 6px 8px;
+  gap: 6px;
+}
+
+.stash-new-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 100%;
+}
+
+.create-stash-form {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 6px;
+  border: 1px solid var(--vscode-widget-border, transparent);
+  border-radius: 3px;
+}
+
+.create-stash-form label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+}
+
+.create-stash-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.create-stash-actions button {
+  flex: 1;
+}
+
+.stash-scroll {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.stash-entry + .stash-entry {
+  margin-top: 2px;
+}
+
+.stash-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 4px;
+  border-radius: 3px;
+  cursor: default;
+}
+
+.stash-row:hover {
+  background: var(--vscode-list-hoverBackground);
+}
+
+.stash-row-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.stash-message {
+  font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.stash-meta {
+  display: flex;
+  gap: 8px;
+  font-size: 11px;
+  opacity: 0.6;
+}
+
+.stash-row-actions {
+  display: flex;
+  gap: 2px;
+}
+
+.stash-row-actions button {
+  background: transparent;
+  padding: 2px 5px;
+}
+
+.stash-row-actions button:hover {
+  background: var(--vscode-toolbar-hoverBackground);
+}
+
+.stash-row-actions button.danger:hover {
+  color: var(--vscode-errorForeground);
+}
+
+.stash-files {
+  padding: 2px 0 4px 24px;
+}
+
+.stash-files-loading {
+  font-size: 12px;
+  opacity: 0.6;
+  padding: 2px 0;
+}
+
+.stash-file-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 0;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.stash-file-row:hover .stash-file-path {
+  text-decoration: underline;
+}
+
+.stash-file-path {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

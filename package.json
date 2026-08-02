@@ -3,7 +3,7 @@
   "displayName": "GitVantage",
   "publisher": "sswarekar-git",
   "description": "Fast, keyboard-friendly Git tooling for VS Code",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "GPL-3.0-or-later",
   "icon": "media/icons/icon.png",
   "files": [

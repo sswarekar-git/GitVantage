@@ -2,6 +2,7 @@
 
 [![CI](https://github.com/sswarekar-git/GitVantage/actions/workflows/ci.yml/badge.svg)](https://github.com/sswarekar-git/GitVantage/actions/workflows/ci.yml)
 [![Latest release](https://img.shields.io/github/v/release/sswarekar-git/GitVantage)](https://github.com/sswarekar-git/GitVantage/releases/latest)
+[![VS Code Marketplace](https://img.shields.io/visual-studio-marketplace/v/sswarekar-git.gitvantage)](https://marketplace.visualstudio.com/items?itemName=sswarekar-git.gitvantage)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
 
 Fast, keyboard-friendly Git tooling for VS Code.
@@ -10,16 +11,13 @@ GitVantage adds a dedicated Git panel and log viewer on top of VS Code's built-i
 
 ## Installation
 
-GitVantage isn't on the VS Code Marketplace yet. Install it from a [GitHub Release](https://github.com/sswarekar-git/GitVantage/releases/latest):
-
-1. Download the `.vsix` from the latest release
-2. In VS Code, open the Command Palette → **Extensions: Install from VSIX...** → select the downloaded file
-
-or from the command line:
+Install from the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=sswarekar-git.gitvantage), or from the command line:
 
 ```bash
-code --install-extension gitvantage-<version>.vsix
+code --install-extension sswarekar-git.gitvantage
 ```
+
+You can also grab the `.vsix` from a [GitHub Release](https://github.com/sswarekar-git/GitVantage/releases/latest) and install it via the Command Palette → **Extensions: Install from VSIX...**
 
 ## Features
 

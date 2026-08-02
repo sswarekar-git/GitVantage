@@ -84,10 +84,12 @@ export class StashViewProvider implements vscode.WebviewViewProvider {
       switch (msg.type) {
         case 'createStash':
           await cli.createStash(repoRoot, msg.payload);
+          await repo.status();
           await this.pushState();
           break;
         case 'stashAction':
           await this.handleStashAction(repoRoot, msg.payload.ref, msg.payload.action);
+          await repo.status();
           await this.pushState();
           break;
         case 'requestStashFiles': {

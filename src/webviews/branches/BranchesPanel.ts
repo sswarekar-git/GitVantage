@@ -102,6 +102,7 @@ export class BranchesPanel {
             msg.payload.isRemote,
             msg.payload.action,
           );
+          await repo.status();
           await this.pushState();
           break;
         case 'switchRepository':

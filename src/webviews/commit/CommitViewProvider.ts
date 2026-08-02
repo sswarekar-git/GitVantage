@@ -131,10 +131,12 @@ export class CommitViewProvider implements vscode.WebviewViewProvider {
       switch (msg.type) {
         case 'stageFiles':
           await stageFiles(repo.rootUri.fsPath, msg.payload.paths);
+          await repo.status();
           await this.pushState();
           break;
         case 'unstageFiles':
           await unstageFiles(repo.rootUri.fsPath, msg.payload.paths);
+          await repo.status();
           await this.pushState();
           break;
         case 'openDiff':
@@ -151,6 +153,7 @@ export class CommitViewProvider implements vscode.WebviewViewProvider {
           );
           if (confirm !== 'Abort Merge') break;
           await abortMerge(repo.rootUri.fsPath);
+          await repo.status();
           await this.pushState();
           break;
         }
@@ -169,6 +172,7 @@ export class CommitViewProvider implements vscode.WebviewViewProvider {
           const fullMessage = body.trim() ? `${subject}\n\n${body}` : subject;
           await commitChanges(repo.rootUri.fsPath, fullMessage, { amend });
           if (push) await pushCurrent(repo.rootUri.fsPath);
+          await repo.status();
           await this.pushState();
           break;
         }

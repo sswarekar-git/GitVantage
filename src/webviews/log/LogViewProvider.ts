@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import type { RepoManager } from '../../git/repoManager';
+import type { Repository } from '../../git/vscodeGitTypes';
 import * as cli from '../../git/cli';
 import { getWebviewHtml } from '../htmlShell';
 import { openCompareDiffs } from '../diffUtil';
@@ -128,7 +129,7 @@ export class LogViewProvider implements vscode.WebviewViewProvider {
           );
           break;
         case 'commitAction':
-          await this.handleCommitAction(repoRoot, msg.payload.sha, msg.payload.action);
+          await this.handleCommitAction(repo, msg.payload.sha, msg.payload.action);
           break;
         case 'requestBranches':
           await this.pushBranches();
@@ -141,6 +142,7 @@ export class LogViewProvider implements vscode.WebviewViewProvider {
             msg.payload.isRemote,
             msg.payload.action,
           );
+          await repo.status();
           this.pushInit();
           await this.pushBranches();
           break;
@@ -164,10 +166,12 @@ export class LogViewProvider implements vscode.WebviewViewProvider {
     }
   }
 
-  private async handleCommitAction(repoRoot: string, sha: string, action: CommitAction): Promise<void> {
+  private async handleCommitAction(repo: Repository, sha: string, action: CommitAction): Promise<void> {
+    const repoRoot = repo.rootUri.fsPath;
     switch (action) {
       case 'checkout':
         await cli.checkoutBranch(repoRoot, sha);
+        await repo.status();
         vscode.window.showInformationMessage(`GitVantage: checked out ${sha.slice(0, 8)} (detached HEAD)`);
         break;
       case 'cherryPick': {
@@ -181,11 +185,13 @@ export class LogViewProvider implements vscode.WebviewViewProvider {
           await cli.abortCherryPick(repoRoot);
         }
         await cli.cherryPick(repoRoot, sha);
+        await repo.status();
         vscode.window.showInformationMessage(`GitVantage: cherry-picked ${sha.slice(0, 8)}`);
         break;
       }
       case 'revert':
         await cli.revertCommit(repoRoot, sha);
+        await repo.status();
         vscode.window.showInformationMessage(`GitVantage: reverted ${sha.slice(0, 8)}`);
         break;
       case 'createBranch': {
@@ -203,6 +209,7 @@ export class LogViewProvider implements vscode.WebviewViewProvider {
         );
         if (confirm !== 'Reset (Soft)') return;
         await cli.resetTo(repoRoot, sha, 'soft');
+        await repo.status();
         break;
       }
       case 'resetHard': {
@@ -213,6 +220,7 @@ export class LogViewProvider implements vscode.WebviewViewProvider {
         );
         if (confirm !== 'Reset (Hard)') return;
         await cli.resetTo(repoRoot, sha, 'hard');
+        await repo.status();
         break;
       }
       case 'compareHead': {

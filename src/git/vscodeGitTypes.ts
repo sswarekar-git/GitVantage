@@ -61,6 +61,12 @@ export interface Repository {
   revert(paths: vscode.Uri[]): Promise<void>;
   commit(message: string, opts?: CommitOptions): Promise<void>;
   push(remoteName?: string, branchName?: string, setUpstream?: boolean): Promise<void>;
+  // Forces the built-in git extension to re-scan and refresh repo.state.
+  // Needed after any mutation made through our own CLI layer (see cli.ts),
+  // since those bypass the built-in extension entirely — without this,
+  // repo.state.indexChanges/workingTreeChanges stay stale until the
+  // extension's own background watcher happens to catch up.
+  status(): Promise<void>;
 }
 
 export interface GitAPI {

@@ -5,7 +5,7 @@
   "description": "Fast, keyboard-friendly Git tooling for VS Code",
   "version": "0.0.1",
   "license": "GPL-3.0-or-later",
-  "icon": "media/icons/icon.svg",
+  "icon": "media/icons/icon.png",
   "files": [
     "out/**",
     "media/**",

@@ -91,6 +91,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
         logError('fetching', err);
         vscode.window.showErrorMessage(`GitVantage: ${err instanceof Error ? err.message : String(err)}`);
       } finally {
+        await repo.status();
         commitViewProvider.refresh();
         logViewProvider.refresh();
       }
@@ -105,6 +106,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
         logError('pulling', err);
         vscode.window.showErrorMessage(`GitVantage: ${err instanceof Error ? err.message : String(err)}`);
       } finally {
+        await repo.status();
         commitViewProvider.refresh();
         logViewProvider.refresh();
       }
@@ -119,6 +121,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
         logError('pushing', err);
         vscode.window.showErrorMessage(`GitVantage: ${err instanceof Error ? err.message : String(err)}`);
       } finally {
+        await repo.status();
         commitViewProvider.refresh();
         logViewProvider.refresh();
       }
